@@ -1,50 +1,53 @@
 import Keycloak from "keycloak-js";
 import { useEffect, useState } from "react";
+import Navbar from "./components/landing/Navbar";
+import Hero from "./components/landing/Hero";
+import ProgressTracker from "./components/landing/ProgressTracker";
+import Features from "./components/landing/Features";
+import FAQs from "./components/landing/FAQs";
+import Footer from "./components/landing/Footer";
 
 const keycloak = new Keycloak({
-	url: import.meta.env.VITE_KEYCLOAK_URL,
-	realm: import.meta.env.VITE_KEYCLOAK_REALM,
-	clientId: import.meta.env.VITE_KEYCLOAK_CLIENT,
+  url: import.meta.env.VITE_KEYCLOAK_URL,
+  realm: import.meta.env.VITE_KEYCLOAK_REALM,
+  clientId: import.meta.env.VITE_KEYCLOAK_CLIENT,
 });
 
 const App = () => {
-	const [isLogin, setIsLogin] = useState(false);
-	const [token, setToken] = useState<String>("");
+  const [isLogin, setIsLogin] = useState(false);
+  // const [token, setToken] = useState<string>("");
+  const [theme, setTheme] = useState<string>("emerald");
 
-	useEffect(() => {
-		keycloak.init({ onLoad: "check-sso" }).then((auth) => {
-			setIsLogin(auth);
-			setToken(keycloak.token!);
-		});
-	}, []);
+  // useEffect(() => {
+  // 	keycloak.init({ onLoad: "check-sso" }).then((auth) => {
+  // 		setIsLogin(auth);
+  // 		setToken(keycloak.token!);
+  // 	});
+  // }, []);
 
-	return (
-		<div className="hero bg-base-200 min-h-screen">
-			<div className="hero-content text-center">
-				<div className="max-w-md">
-					<h1 className="text-5xl font-bold">Hello there</h1>
-					<p className="py-6">
-						Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-						excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-						a id nisi.
-					</p>
-					<button
-						className="btn btn-primary"
-						onClick={() => {
-							if (isLogin) {
-								keycloak.logout();
-							} else {
-								keycloak.login();
-							}
-						}}
-					>
-						{isLogin ? "Sign Out" : "Sign In"}
-					</button>
-					{(console.log(token), null)}
-				</div>
-			</div>
-		</div>
-	);
+  const handleLogin = () => {
+    if (isLogin) {
+      keycloak.logout();
+    } else {
+      keycloak.login();
+    }
+  };
+
+  return (
+    <div data-theme={theme}>
+      <Navbar
+        setTheme={setTheme}
+        currentTheme={theme}
+        isLogin={isLogin}
+        onLoginClick={handleLogin}
+      />
+      <Hero isLogin={isLogin} onLoginClick={handleLogin} />
+      <ProgressTracker />
+      <Features />
+      <FAQs />
+      <Footer isLogin={isLogin} onLoginClick={handleLogin} />
+    </div>
+  );
 };
 
 export default App;
