@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher";
-import { ThemeProps } from "../../types/main";
+import { ThemeProps } from "../../types/common.types";
 
 interface NavbarProps extends ThemeProps {
   isLogin: boolean;

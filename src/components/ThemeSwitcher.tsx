@@ -1,4 +1,4 @@
-import { ThemeProps } from "../types/main";
+import { ThemeProps } from "../types/common.types";
 
 const ThemeSwitcher = ({ setTheme, currentTheme }: ThemeProps) => {
   const themes = [
