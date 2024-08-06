@@ -9,7 +9,7 @@ const FAQs = () => {
   return (
     <div className="px-16 py-24 bg-base-100">
       <h2 className="mb-8 text-3xl font-bold text-center">
-        FAQs About iMemoraise.
+        Pertanyaan yang Sering Diajukan Mengenai iMemoraise.
       </h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
