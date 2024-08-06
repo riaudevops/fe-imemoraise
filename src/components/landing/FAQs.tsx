@@ -1,9 +1,25 @@
 const FAQs = () => {
   const faqs = [
-    { question: "Pertanyaan 1?" },
-    { question: "Pertanyaan 2?" },
-    { question: "Pertanyaan 3?" },
-    { question: "Pertanyaan 4?" },
+    {
+      question: "Apa itu iMemoraise?",
+      answer:
+        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan mahasiswa menyetor hafalan secara online, memantau perkembangan, dan menerima feedback dari pengajar.",
+    },
+    {
+      question: "Bagaimana cara mendaftar di iMemoraise?",
+      answer:
+        "Untuk mendaftar di iMemoraise, Anda perlu mengunjungi halaman pendaftaran di situs web kami dan mengisi formulir dengan informasi yang diperlukan, seperti nama, alamat email, dan nomor mahasiswa. Setelah itu, Anda akan menerima email konfirmasi untuk mengaktifkan akun Anda.",
+    },
+    {
+      question: "Bagaimana cara menyetor hafalan Al-Quran melalui iMemoraise?",
+      answer:
+        "Untuk menyetor hafalan Al-Quran, Anda harus login ke akun iMemoraise Anda, lalu pilih menu 'Setor Hafalan'. Ikuti instruksi yang ada untuk merekam atau mengunggah hafalan Anda. Setelah disetor, pengajar akan meninjau hafalan Anda dan memberikan feedback.",
+    },
+    {
+      question: "Bagaimana cara memantau perkembangan hafalan saya?",
+      answer:
+        "Anda dapat memantau progres hafalan Anda melalui dashboard di akun iMemoraise Anda. Di sana, Anda akan melihat ringkasan hafalan yang telah disetor, feedback dari pengajar, dan perkembangan keseluruhan hafalan Anda.",
+    },
   ];
 
   return (
@@ -19,7 +35,7 @@ const FAQs = () => {
               {faq.question}
             </div>
             <div className="collapse-content">
-              <p>Jawaban akan ditampilkan di sini.</p>
+              <p>{faq.answer}</p>
             </div>
           </div>
         ))}
