@@ -3,7 +3,7 @@ const Features = () => {
     {
       title: "Laporan Digital yang Praktis",
       description:
-        "iMemorasie memberikan laporan digital. Jadi kamu nggak perlu khawatir lagi kalau kertas form hafalanmu hilang",
+        "iMemoraise memberikan laporan digital. Jadi kamu nggak perlu khawatir lagi kalau kertas form hafalanmu hilang",
       icon: "📊",
     },
     {
@@ -22,7 +22,7 @@ const Features = () => {
 
   return (
     <div className="px-16 py-24 bg-base-200/50">
-      <h2 className="mb-8 text-3xl font-bold text-center">Why iMemoraise?</h2>
+      <h2 className="mb-8 text-3xl font-bold text-center">Mengapa Harus iMemoraise?</h2>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {features.map((feature, index) => (
           <div key={index} className="p-4 shadow-xl card bg-base-100">

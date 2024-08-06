@@ -31,7 +31,7 @@ const LandingPages = () => {
 				onLoginClick={handleLogin}
 			/>
 			<Hero isLogin={isLogin} onLoginClick={handleLogin} />
-			<ProgressTracker />
+			{/* <ProgressTracker /> */}
 			<Features />
 			<FAQs />
 			<Footer isLogin={isLogin} onLoginClick={handleLogin} />
