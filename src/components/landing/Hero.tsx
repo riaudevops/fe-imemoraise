@@ -6,12 +6,12 @@ interface HeroProps {
 const Hero = ({ isLogin, onLoginClick }: HeroProps) => {
   return (
     <div className="relative min-h-screen pt-16 overflow-hidden hero bg-base-100">
-      <div className="absolute top-0 left-0">
+      <div className="absolute left-0 -top-1">
         <svg
           width="1920"
           height="1013"
           viewBox="0 0 1920 1013"
-          className="opacity-50 fill-current text-primary"
+          className="opacity-50 fill-current"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -6073,7 +6073,7 @@ const Hero = ({ isLogin, onLoginClick }: HeroProps) => {
         <div className="flex flex-col items-center max-w-md">
           <img
             src="/kaligrafi.svg"
-            alt="UIN Suska Riau"
+            alt="Calligraphy"
             className="w-56 h-56 mb-8"
           />
           <h1 className="text-5xl font-bold">iMemoraise</h1>
