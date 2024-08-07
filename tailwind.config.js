@@ -1,27 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [
     // eslint-disable-next-line no-undef
-    require('daisyui'),
+    require("daisyui"),
   ],
   daisyui: {
     themes: [
-      "light", 
-      "dark", 
-      "cupcake", 
-      "bumblebee", 
-      "emerald", 
-      "corporate", 
-      "synthwave", 
-      "retro", 
-      "cyberpunk", 
+      "light",
+      "dark",
+      "cupcake",
+      "bumblebee",
+      "emerald",
+      "corporate",
+      "synthwave",
+      "retro",
+      "cyberpunk",
       "valentine",
       "halloween",
       "garden",
@@ -47,4 +44,4 @@ export default {
       "sunset",
     ],
   },
-}
+};
