@@ -1,15 +1,13 @@
-import { useState } from "react";
 import Navbar from "../components/landing/Navbar";
 import Hero from "../components/landing/Hero";
 import Features from "../components/landing/Features";
 import FAQs from "../components/landing/FAQs";
 import Footer from "../components/landing/Footer";
-
+import { useTheme } from "../hooks/useTheme.hooks";
 import { useKeycloak } from "../hooks/useKeycloak.hooks";
 
 const LandingPages = () => {
-  const [theme, setTheme] = useState<string>("emerald");
-
+  const { theme, setTheme } = useTheme();
   const { keycloak, isLogin, token } = useKeycloak();
   console.log(token);
 
