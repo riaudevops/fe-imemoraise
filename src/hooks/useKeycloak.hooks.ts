@@ -1,6 +1,5 @@
-// useKeycloak.ts
-import { useState, useEffect } from 'react';
-import Keycloak from 'keycloak-js';
+import Keycloak from "keycloak-js";
+import { useState, useEffect } from "react";
 
 const keycloak = new Keycloak({
   url: import.meta.env.VITE_KEYCLOAK_URL,

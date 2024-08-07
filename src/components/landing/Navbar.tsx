@@ -14,14 +14,14 @@ const Navbar = ({
   onLoginClick,
 }: NavbarProps) => {
   return (
-    <div className="fixed z-50 shadow-sm bg-base-100 navbar">
+    <div className="fixed z-10 shadow-sm bg-base-100/95 navbar">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost">
           <img src="/uin-suska.svg" alt="UIN Suska Riau" className="h-8" />
           iMemoraise - UIN Suska Riau
         </Link>
       </div>
-      <div className="gap-2">
+      <div className="gap-1">
         <ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
         <button className="btn btn-primary" onClick={onLoginClick}>
           <span className="hidden sm:inline">
