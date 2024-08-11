@@ -3,22 +3,22 @@ const FAQs = () => {
     {
       question: "Apa itu iMemoraise?",
       answer:
-        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan mahasiswa menyetor hafalan secara online, memantau perkembangan, dan menerima feedback dari pengajar.",
+        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan dosen pembimbing merekap setoran hafalan mahasiswa bimbingannya secara online, memantau perkembangan, dan lain sebagainya, mahasiswa pun dapat melihat perkembangan progres setoran ia, dan dapat lebih mempersiapkan mana surah yang harus ia setor untuk memenuhi persyaratan akademik tertentu.",
     },
     {
       question: "Bagaimana cara mendaftar di iMemoraise?",
       answer:
-        "Untuk mendaftar di iMemoraise, Anda perlu mengunjungi halaman pendaftaran di situs web kami dan mengisi formulir dengan informasi yang diperlukan, seperti nama, alamat email, dan nomor mahasiswa. Setelah itu, Anda akan menerima email konfirmasi untuk mengaktifkan akun Anda.",
+        "Anda hanya perlu mendaftar dengan email resmi @uin.suska.ac.id, lalu silahkan set password anda, dan anda sudah bisa login untuk menikmati layanan di-imemoraise",
     },
     {
       question: "Bagaimana cara menyetor hafalan Al-Quran melalui iMemoraise?",
       answer:
-        "Untuk menyetor hafalan Al-Quran, Anda harus login ke akun iMemoraise Anda, lalu pilih menu 'Setor Hafalan'. Ikuti instruksi yang ada untuk merekam atau mengunggah hafalan Anda. Setelah disetor, pengajar akan meninjau hafalan Anda dan memberikan feedback.",
+        "Untuk menyetor hafalan Al-Quran, Anda harus konfirmasi terlebih dahulu ke dosen-pa anda terkait bagaimana prosedur penyetoran dengan beliau, lalu anda tinggal setor saja sesuai prosedur yang ditetapkan oleh dosen pa anda, dan nanti dosen pa anda akan melakukan menyetujui ataupun menolak penyetoran hafalan anda berdasarkan penilaian beliau, dan status setoran anda dapat anda lihat di dashboard setoran bagi mahasiswa.",
     },
     {
       question: "Bagaimana cara memantau perkembangan hafalan saya?",
       answer:
-        "Anda dapat memantau progres hafalan Anda melalui dashboard di akun iMemoraise Anda. Di sana, Anda akan melihat ringkasan hafalan yang telah disetor, feedback dari pengajar, dan perkembangan keseluruhan hafalan Anda.",
+        "Anda dapat memantau progres hafalan Anda melalui dashboard di akun iMemoraise Anda bagi mahasiswa. Di sana, Anda akan melihat ringkasan hafalan yang telah disetor, progress bar setoran hafalan untuk persyaratan akademik anda, dan perkembangan keseluruhan hafalan Anda.",
     },
   ];
 
