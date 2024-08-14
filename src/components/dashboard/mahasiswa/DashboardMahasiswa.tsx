@@ -7,6 +7,7 @@ const DashboardMahasiswa = ({ setTheme, currentTheme }: ThemeProps) => {
       setTheme={setTheme}
       currentTheme={currentTheme}
       sidebarItems={sidebarMahasiswaItems}
+      subpageTitle="Dashboard Mahasiswa"
     >
       <h1 className="text-2xl font-bold">Dashboard Mahasiswa</h1>
     </Layout>

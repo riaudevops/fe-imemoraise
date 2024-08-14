@@ -7,6 +7,7 @@ const SetoranMahasiswa = ({ setTheme, currentTheme }: ThemeProps) => {
       setTheme={setTheme}
       currentTheme={currentTheme}
       sidebarItems={sidebarMahasiswaItems}
+      subpageTitle="Setoran Mahasiswa"
     >
       <h1 className="text-2xl font-bold">Setoran</h1>
     </Layout>
