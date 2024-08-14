@@ -4,30 +4,43 @@ import Features from "../components/landing/Features";
 import FAQs from "../components/landing/FAQs";
 import Footer from "../components/landing/Footer";
 import { useTheme } from "../hooks/useTheme.hooks";
-import { useKeycloak } from "../hooks/useKeycloak.hooks";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useKeycloak } from "@react-keycloak/web";
 
 const LandingPages = () => {
   const { theme, setTheme } = useTheme();
-  const { keycloak, isLogin, token } = useKeycloak();
-  console.log(token);
+
+  const { keycloak } = useKeycloak();
 
   const handleLogin = () => {
-    if (isLogin) {
+    if (keycloak.authenticated) {
       keycloak.logout();
     } else {
       keycloak.login();
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleGoToDashboard = (navigate: NavigateFunction) => {
+  
+    if (keycloak.hasResourceRole("mahasiswa")) {
+      navigate("/mahasiswa");
+    } else if (keycloak.hasResourceRole("dosen-pa")) {
+      navigate("/pa");
+    }
+  };
+  
   return (
     <div data-theme={theme}>
       <Navbar
         setTheme={setTheme}
         currentTheme={theme}
-        isLogin={isLogin}
+        isLogin={keycloak.authenticated!}
         onLoginClick={handleLogin}
+        onGoToDashboardClick={() => handleGoToDashboard(navigate)}
       />
-      <Hero isLogin={isLogin} onLoginClick={handleLogin} />
+      <Hero isLogin={keycloak.authenticated!} onLoginClick={handleLogin} onGoToDashboardClick={() => handleGoToDashboard(navigate)} />
       <Features />
       <FAQs />
       <Footer />
