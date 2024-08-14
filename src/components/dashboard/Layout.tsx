@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import ThemeSwitcher from "../ThemeSwitcher";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeProps } from "../../types/common.types";
+import { useKeycloak } from "@react-keycloak/web";
 
 interface LayoutProps extends ThemeProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface LayoutProps extends ThemeProps {
     label: string;
     link: string;
   }>;
+  subpageTitle?: string;
 }
 
 const Layout = ({
@@ -17,15 +19,17 @@ const Layout = ({
   currentTheme,
   children,
   sidebarItems,
+  subpageTitle,
 }: LayoutProps) => {
   const location = useLocation();
+  const { keycloak } = useKeycloak();
 
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <div className="shadow-md navbar bg-base-100">
-          <div className="flex-1">
+        <div className="pl-4 shadow-md navbar bg-base-100 border-b border-neutral-content flex justify-between">
+          <div className="flex gap-1">
             <label
               htmlFor="my-drawer"
               className="btn btn-ghost drawer-button lg:hidden"
@@ -44,28 +48,31 @@ const Layout = ({
                 ></path>
               </svg>
             </label>
+            <span className="text-lg font-semibold">{subpageTitle}</span>
           </div>
-          <ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
-          <button className="btn btn-ghost text-primary">
-            <span className="hidden sm:inline">Sign Out</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-          </button>
+          <div>
+            <ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
+            <button className="btn btn-ghost text-primary" onClick={() => keycloak.logout()}>
+              <span className="hidden sm:inline">Sign Out</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="h-screen p-4 bg-base-200/50">{children}</div>
+        <div className="h-screen p-4 bg-base-200/20">{children}</div>
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer" className="drawer-overlay"></label>
@@ -84,7 +91,7 @@ const Layout = ({
             <li key={index}>
               <Link
                 to={item.link}
-                className={`m-2 text-base hover:bg-base-100/90 ${
+                className={`m-2 text-base hover:bg-base-100/60 ${
                   location.pathname === item.link
                     ? "bg-base-100/90"
                     : "bg-base-100/50"
