@@ -7,6 +7,7 @@ const DashboardPA = ({ setTheme, currentTheme }: ThemeProps) => {
       setTheme={setTheme}
       currentTheme={currentTheme}
       sidebarItems={sidebarPAItems}
+      subpageTitle="Dashboard PA"
     >
       <h1 className="text-2xl font-bold">Dashboard PA</h1>
     </Layout>

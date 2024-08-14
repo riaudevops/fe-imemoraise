@@ -7,8 +7,9 @@ const MahasiswaPA = ({ setTheme, currentTheme }: ThemeProps) => {
       setTheme={setTheme}
       currentTheme={currentTheme}
       sidebarItems={sidebarPAItems}
+      subpageTitle="Mahasiswa Bimbingan Anda"
     >
-      <h1 className="text-2xl font-bold">Mahasiswa Bimbingan Akademik</h1>
+      <h1 className="text-2xl font-bold">Mahasiswa Bimbingan Anda</h1>
     </Layout>
   );
 };
