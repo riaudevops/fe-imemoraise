@@ -5,7 +5,6 @@ import SetoranMahasiswaPages from "../pages/mahasiswa/setoran.mahasiswa.pages.ts
 import DashboardPAPages from "../pages/pa/dashboard.pa.pages.tsx";
 import MahasiswaPAPages from "../pages/pa/mahasiswa.pa.pages.tsx";
 import ProtectedRoute from "./protected.routers.tsx";
-
 const router = createBrowserRouter([
 	{
 		path: "/",
