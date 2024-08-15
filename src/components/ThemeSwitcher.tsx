@@ -37,7 +37,7 @@ const ThemeSwitcher = ({ setTheme, currentTheme }: ThemeProps) => {
   ];
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end z-50">
       <div tabIndex={0} className="btn btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
