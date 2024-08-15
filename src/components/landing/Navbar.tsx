@@ -23,7 +23,7 @@ const Navbar = ({
 					<span>iMemoraise - UIN Suska Riau</span>
 				</Link>
 			</div>
-			<div className="flex gap-1">
+			<div className="flex gap-2">
 				<ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
 				{isLogin && (
 					<button

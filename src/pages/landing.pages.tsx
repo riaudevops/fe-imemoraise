@@ -9,7 +9,6 @@ import { useKeycloak } from "@react-keycloak/web";
 
 const LandingPages = () => {
   const { theme, setTheme } = useTheme();
-
   const { keycloak } = useKeycloak();
 
   const handleLogin = () => {
