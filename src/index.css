@@ -5,3 +5,6 @@
 .btn {
   @apply rounded-full;
 }
+.btn-rounded-sm {
+  @apply rounded-lg;
+}
