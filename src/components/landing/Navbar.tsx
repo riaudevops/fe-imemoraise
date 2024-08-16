@@ -16,14 +16,14 @@ const Navbar = ({
 	onGoToDashboardClick,
 }: NavbarProps) => {
 	return (
-		<div className="fixed z-10 shadow-sm bg-base-100/95 navbar">
-			<div className="flex-1">
+		<div className="flex justify-between fixed z-10 shadow-sm bg-base-100/95 navbar">
+			<div className="mt-[1px]">
 				<Link to="/" className="btn btn-ghost">
 					<img src="/uin-suska.svg" alt="UIN Suska Riau" className="h-8" />
 					<span>iMemoraise - UIN Suska Riau</span>
 				</Link>
 			</div>
-			<div className="flex gap-2">
+			<div className="flex gap-2 mt-[1px] pr-1">
 				<ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
 				{isLogin && (
 					<button
