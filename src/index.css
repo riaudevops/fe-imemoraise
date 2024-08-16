@@ -5,6 +5,11 @@
 .btn {
   @apply rounded-full;
 }
+
+.skeleton {
+  @apply opacity-65 rounded-full;
+}
+
 .btn-rounded-sm {
   @apply rounded-lg;
 }
