@@ -5,6 +5,8 @@ import SetoranMahasiswaPages from "../pages/mahasiswa/setoran.mahasiswa.pages.ts
 import DashboardPAPages from "../pages/pa/dashboard.pa.pages.tsx";
 import MahasiswaPAPages from "../pages/pa/mahasiswa.pa.pages.tsx";
 import ProtectedRoute from "./protected.routers.tsx";
+import NotFound from "../components/NotFound.tsx";
+import Forbidden from "../components/Forbidden.tsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -12,7 +14,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/unauthorized",
-		element: <p>Siapa Ente...</p>,
+		element: <Forbidden />,
+	},
+	{
+		path: "*",
+		element: <NotFound />
 	},
 	{
 		path: "/mahasiswa",
