@@ -6070,15 +6070,15 @@ const Hero = ({ isLogin, onGoToDashboardClick, onLoginClick }: HeroProps) => {
           </defs>
         </svg>
       </div>
-      <div className="flex-col hero-content">
-        <div className="flex flex-col items-center max-w-md">
+      <div className="flex-col hero-content mt-1">
+        <div className="flex flex-col items-center max-w-xl">
           <img
             src="/kaligrafi.svg"
             alt="Calligraphy"
             className="w-56 h-56 mb-8"
           />
           <h1 className="text-5xl font-bold">iMemoraise</h1>
-          <p className="py-6 text-center">
+          <p className="mb-6 mt-4 text-center text-xl italic">
             Integrated Quran Memorization Information System
           </p>
           <button className="btn btn-primary" onClick={isLogin ? onGoToDashboardClick : onLoginClick}>
