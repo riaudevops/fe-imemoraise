@@ -25,10 +25,10 @@ const Layout = ({
   const { keycloak } = useKeycloak();
 
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open h-screen">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
-        <div className="pl-4 shadow-md navbar bg-base-100 border-b border-neutral-content flex justify-between">
+      <div className="drawer-content h-full">
+        <div className="pl-4 h-16 shadow-md navbar bg-base-100 border-b border-neutral-content flex justify-between sticky top-0 z-50">
           <div className="flex gap-1">
             <label
               htmlFor="my-drawer"
@@ -72,29 +72,30 @@ const Layout = ({
           </div>
         </div>
 
-        <div className="h-screen p-4 bg-base-200/20">{children}</div>
+        <div className="p-4 bg-base-200/20">{children}</div>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-50">
         <label htmlFor="my-drawer" className="drawer-overlay"></label>
-        <ul className="h-full p-4 w-80 menu bg-primary">
-          <div className="flex items-center justify-center h-24 mb-8 text-base-100/95">
+        <ul className="h-full p-4 w-80 menu bg-base-100 border-r border-black">
+          <div className="flex items-center justify-center h-24 mb-3 text-base-100/95">
             <img
               src="/uin-suska.svg"
               alt="UIN Suska Riau"
               className="w-16 h-16 mr-2"
             />
-            <span className="text-2xl font-bold">
-              iMemoraise <br /> UIN Suska Riau
+            <span className="text-2xl font-bold text-base-content">
+              <span className="underline italic">iMemoraise</span> <br /> UIN Suska Riau
             </span>
           </div>
+          <div className="mx-auto h-[1px] w-48 mb-5 bg-base-content"/>
           {sidebarItems.map((item, index) => (
             <li key={index}>
               <Link
                 to={item.link}
-                className={`m-2 text-base hover:bg-base-100/60 ${
+                className={`m-2 text-base hover:bg-primary/10 ${
                   location.pathname === item.link
-                    ? "bg-base-100/90"
-                    : "bg-base-100/50"
+                    ? "bg-primary/40"
+                    : "bg-base-200"
                 }`}
               >
                 {item.icon}
