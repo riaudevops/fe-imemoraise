@@ -1,6 +1,6 @@
 import { useKeycloak } from "@react-keycloak/web";
 import { Navigate } from "react-router-dom";
-import { LoadingInterfaceLanding } from "../components/LoadingInterface";
+import { useTheme } from "../hooks/useTheme.hooks";
 
 interface ProtectedRouteProps {
     children: React.ReactNode;
@@ -9,10 +9,11 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children, roles }: ProtectedRouteProps) => {
     const { keycloak, initialized } = useKeycloak();
+    const { theme } = useTheme();
 
     // Tampilkan loading atau null hingga Keycloak siap
     if (!initialized) {
-        return <LoadingInterfaceLanding />;
+        return <div data-theme={theme} className="w-screen h-screen" />;
     }
 
     // Periksa apakah pengguna sudah terautentikasi
