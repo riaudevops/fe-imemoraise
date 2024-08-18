@@ -7,6 +7,7 @@ import MahasiswaPAPages from "../pages/pa/mahasiswa.pa.pages.tsx";
 import ProtectedRoute from "./protected.routers.tsx";
 import NotFound from "../components/NotFound.tsx";
 import Forbidden from "../components/Forbidden.tsx";
+import MahasiswaPASetoranPages from "../pages/pa/mahasiswa.pa.setoran.pages.tsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -49,6 +50,14 @@ const router = createBrowserRouter([
 		element: (
 			<ProtectedRoute roles={["dosen-pa"]}>
 				<MahasiswaPAPages />
+			</ProtectedRoute>
+		),
+	},
+	{
+		path: "/pa/mahasiswa/setoran",
+		element: (
+			<ProtectedRoute roles={["dosen-pa"]}>
+				<MahasiswaPASetoranPages />
 			</ProtectedRoute>
 		),
 	},
