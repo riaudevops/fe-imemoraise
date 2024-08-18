@@ -93,7 +93,7 @@ const Layout = ({
               <Link
                 to={item.link}
                 className={`m-2 text-base hover:bg-primary/10 ${
-                  location.pathname === item.link
+                  location.pathname === item.link || (location.pathname === "/pa/mahasiswa/setoran" && item.label === "Mahasiswa")
                     ? "bg-primary/40"
                     : "bg-base-200"
                 }`}
