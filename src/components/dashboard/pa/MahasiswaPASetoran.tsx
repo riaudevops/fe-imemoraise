@@ -6,6 +6,8 @@ import {
   selectedDataForModalBoxInfoPAProps,
 } from "../../../interfaces/common.interfaces";
 import { formatDateTime, labelPersyaratan } from "../Constant";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const MahasiswaPASetoran = () => {
   const location = useLocation();
@@ -16,6 +18,8 @@ const MahasiswaPASetoran = () => {
   const [showModal, setShowModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [setoranDate, setSetoranDate] = useState(new Date());
+
   const [alertInfo, setAlertInfo] = useState<{
     type: "success" | "error";
     message: string;
@@ -241,8 +245,13 @@ const MahasiswaPASetoran = () => {
             <div className="w-full p-2 mt-3 font-medium bg-warning/20">
               <p className="text-lg text-center">Tanggal Setoran Hafalan</p>
             </div>
-            <div className="w-full p-2 bg-base-300">
-              <p className="text-lg text-center">17 Agustus, 2024</p>
+            <div className="w-full p-2 text-center bg-base-300">
+              <DatePicker
+                selected={setoranDate}
+                onChange={(date) => setSetoranDate(date!)}
+                dateFormat="dd MMMM, yyyy"
+                className="text-lg text-center bg-transparent"
+              />
             </div>
 
             <div className="flex justify-start gap-3 mt-6">
