@@ -6,8 +6,6 @@ import {
   selectedDataForModalBoxInfoPAProps,
 } from "../../../interfaces/common.interfaces";
 import { formatDateTime, labelPersyaratan } from "../Constant";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const MahasiswaPASetoran = () => {
   const location = useLocation();
@@ -18,12 +16,12 @@ const MahasiswaPASetoran = () => {
   const [showModal, setShowModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [setoranDate, setSetoranDate] = useState(new Date());
+  const [setoranDate, setSetoranDate] = useState<Date>(new Date());
 
   const [alertInfo, setAlertInfo] = useState<{
     type: "success" | "error";
     message: string;
-  } | null>(null);
+  } | null>();
 
   const [dataSetoranMahasiswa, setDataSetoranMahasiswa] =
     useState<dataSetoranMahasiswaPAProps[]>();
@@ -77,11 +75,12 @@ const MahasiswaPASetoran = () => {
         nim: nim,
         nip: nip,
         nomor_surah: selectedData?.nomor_surah,
+        tgl_setoran: setoranDate,
       })
       .then(() => {
         setShowModal(false);
         setIsChecked(false);
-        setAlertInfo({ type: "success", message: "Validasi berhasil !" });
+        setAlertInfo({ type: "success", message: "Yeay, proses validasi setoran berhasil! ✨" });
         fetchDataSetoranMahasiswa();
       })
       .catch((error) => {
@@ -98,7 +97,7 @@ const MahasiswaPASetoran = () => {
   return (
     <div className="flex flex-col gap-6 mt-2">
       {alertInfo && (
-        <div className="z-20 toast toast-end">
+        <div className="z-20 top-5 toast toast-top">
           <div
             className={`alert ${
               alertInfo.type === "success" ? "alert-success" : "alert-error"
@@ -117,7 +116,7 @@ const MahasiswaPASetoran = () => {
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span>{alertInfo.message}</span>
+            <span className="-ml-2 font-semibold">{alertInfo.message}</span>
           </div>
         </div>
       )}
@@ -178,7 +177,7 @@ const MahasiswaPASetoran = () => {
                 </th>
                 <td className="font-bold text-base-content">{data.nama}</td>
                 <td className="italic underline text-base-content">
-                  {formatDateTime(data.setoran?.[0]?.tgl_validasi || "")}
+                  {formatDateTime(data.setoran?.[0]?.tgl_setoran || "")}
                 </td>
                 <td>
                   <div
@@ -218,8 +217,8 @@ const MahasiswaPASetoran = () => {
       </div>
 
       {showModal && (
-        <div className="modal modal-open">
-          <div className="modal-box">
+        <div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
+          <div className="modal-box lg:ml-10">
             <h2 className="mb-6 text-xl font-bold text-center">
               Validasi Pengesahan Anda:
             </h2>
@@ -243,15 +242,11 @@ const MahasiswaPASetoran = () => {
               <p className="text-lg text-center">{selectedData?.surah}</p>
             </div>
             <div className="w-full p-2 mt-3 font-medium bg-warning/20">
-              <p className="text-lg text-center">Tanggal Setoran Hafalan</p>
+              <p className="text-lg text-center">Tanggal Setoran Hafalan (opsional)</p>
             </div>
-            <div className="w-full p-2 text-center bg-base-300">
-              <DatePicker
-                selected={setoranDate}
-                onChange={(date) => setSetoranDate(date!)}
-                dateFormat="dd MMMM, yyyy"
-                className="text-lg text-center bg-transparent"
-              />
+            <div className="w-full p-2 text-center bg-base-300 flex flex-col gap-3">
+              <input type="date" className="input input-bordered" onChange={(e) => setSetoranDate(new Date(e.target.value))} />
+              <span><span className="font-bold">notes:</span> jika tanggal setoran tidak ditentukan secara manual, akan di tetapkan sesuai tanggal hari ini secara default.</span>
             </div>
 
             <div className="flex justify-start gap-3 mt-6">
