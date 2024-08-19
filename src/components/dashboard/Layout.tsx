@@ -37,7 +37,12 @@ const Layout = ({
                 ></path>
               </svg>
             </label>
-            <span className="text-lg font-semibold">{subpageTitle}</span>
+            <span className="text-lg font-semibold">
+              <button className="btn btn-rounded-sm btn-ghost text-error px-2 p-0 mr-1" onClick={() => window.history.back()}>
+                <span className="underline">{"< Kembali"}</span>
+              </button>
+              {subpageTitle}
+            </span>
           </div>
           <div>
             <ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
