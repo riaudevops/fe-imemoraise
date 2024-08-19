@@ -37,13 +37,13 @@ const ThemeSwitcher = ({ setTheme, currentTheme }: ThemeProps) => {
   ];
 
   return (
-    <div className="dropdown dropdown-end z-50">
+    <div className="z-20 dropdown dropdown-end">
       <div tabIndex={0} className="btn btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          className="w-5 h-5 stroke-current"
+          className="h-5 stroke-current"
         >
           <path
             strokeLinecap="round"
@@ -69,7 +69,7 @@ const ThemeSwitcher = ({ setTheme, currentTheme }: ThemeProps) => {
               {currentTheme === theme && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
+                  className="h-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >

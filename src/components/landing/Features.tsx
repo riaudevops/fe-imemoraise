@@ -3,19 +3,19 @@ const Features = () => {
     {
       title: "Laporan Digital yang Praktis",
       description:
-        "iMemoraise memberikan laporan digital. Jadi kamu nggak perlu khawatir lagi kalau kertas form hafalanmu hilang",
+        "iMemoraise memberikan laporan digital. Jadi, kamu nggak perlu khawatir lagi kalau kertas form hafalanmu hilang.",
       icon: "📊",
     },
     {
       title: "Fleksibel dan Mudah Digunakan",
       description:
-        "Fleksibel digunakan di mana pun dan kapan pun buat lihat progres hafalanmu",
+        "Fleksibel digunakan di mana pun dan kapan pun buat lihat progres hafalanmu.",
       icon: "🌐",
     },
     {
       title: "Akses Cepat dan Terhubung Selalu",
       description:
-        "Akses cepat lewat web dan aplikasi, membuatmu selalu terhubung dengan kami",
+        "Akses cepat lewat web dan aplikasi, membuatmu selalu terhubung dengan kami.",
       icon: "🔗",
     },
   ];

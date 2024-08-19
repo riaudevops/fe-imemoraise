@@ -1,20 +1,18 @@
+import { useTheme } from "../hooks/useTheme.hooks";
+import { useKeycloak } from "@react-keycloak/web";
 import { useState, useEffect } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { LoadingInterfaceLanding } from "../components/LoadingInterface";
 import Navbar from "../components/landing/Navbar";
 import Hero from "../components/landing/Hero";
 import Features from "../components/landing/Features";
 import FAQs from "../components/landing/FAQs";
 import Footer from "../components/landing/Footer";
-import { useTheme } from "../hooks/useTheme.hooks";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useKeycloak } from "@react-keycloak/web";
-import { LoadingInterfaceLanding } from "../components/LoadingInterface";
 
 const LandingPages = () => {
   const { theme, setTheme } = useTheme();
   const { keycloak, initialized } = useKeycloak(); // initialized is provided by useKeycloak hook to check if Keycloak is ready
-
   const [isLoading, setIsLoading] = useState(true);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +33,7 @@ const LandingPages = () => {
     if (keycloak.hasResourceRole("mahasiswa")) {
       navigate("/mahasiswa");
     } else if (keycloak.hasResourceRole("dosen-pa")) {
-      navigate("/pa");
+      navigate("/dosen-pa");
     }
   };
 
