@@ -3,22 +3,22 @@ const FAQs = () => {
     {
       question: "Apa itu iMemoraise?",
       answer:
-        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan dosen pembimbing merekap setoran hafalan mahasiswa bimbingannya secara online, memantau perkembangan, dan lain sebagainya, mahasiswa pun dapat melihat perkembangan progres setoran ia, dan dapat lebih mempersiapkan mana surah yang harus ia setor untuk memenuhi persyaratan akademik tertentu.",
+        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan dosen pembimbing akademik merekap setoran hafalan mahasiswa bimbingannya secara online, memantau perkembangan, dan lain sebagainya, mahasiswa pun dapat melihat perkembangan progres setoran ia, dan dapat lebih mempersiapkan mana surah yang harus ia setor untuk memenuhi persyaratan akademik tertentu.",
     },
     {
       question: "Bagaimana cara mendaftar di iMemoraise?",
       answer:
-        "Anda hanya perlu mendaftar dengan email resmi @uin.suska.ac.id, lalu silahkan set password anda, dan anda sudah bisa login untuk menikmati layanan di-imemoraise",
+        "Anda hanya perlu mendaftar dengan email resmi @uin.suska.ac.id, lalu silahkan set password Anda, dan Anda sudah bisa login untuk menikmati layanan di-iMemoraise.",
     },
     {
       question: "Bagaimana cara menyetor hafalan Al-Quran melalui iMemoraise?",
       answer:
-        "Untuk menyetor hafalan Al-Quran, Anda harus konfirmasi terlebih dahulu ke dosen-pa anda terkait bagaimana prosedur penyetoran dengan beliau, lalu anda tinggal setor saja sesuai prosedur yang ditetapkan oleh dosen pa anda, dan nanti dosen pa anda akan melakukan menyetujui ataupun menolak penyetoran hafalan anda berdasarkan penilaian beliau, dan status setoran anda dapat anda lihat di dashboard setoran bagi mahasiswa.",
+        "Untuk menyetor hafalan Al-Quran, Anda harus konfirmasi terlebih dahulu ke dosen PA Anda terkait bagaimana prosedur penyetoran dengan beliau, lalu Anda tinggal setor saja sesuai prosedur yang ditetapkan oleh dosen PA Anda, dan nanti dosen PA Anda akan melakukan menyetujui ataupun menolak penyetoran hafalan Anda berdasarkan penilaian beliau, dan status setoran Anda dapat Anda lihat di dashboard setoran bagi mahasiswa.",
     },
     {
       question: "Bagaimana cara memantau perkembangan hafalan saya?",
       answer:
-        "Anda dapat memantau progres hafalan Anda melalui dashboard di akun iMemoraise Anda bagi mahasiswa. Di sana, Anda akan melihat ringkasan hafalan yang telah disetor, progress bar setoran hafalan untuk persyaratan akademik anda, dan perkembangan keseluruhan hafalan Anda.",
+        "Anda dapat memantau progres hafalan melalui dashboard di akun iMemoraise Anda bagi mahasiswa. Di sana, Anda akan melihat ringkasan hafalan yang telah disetor, progress bar setoran hafalan untuk persyaratan akademik Anda, dan perkembangan keseluruhan hafalan Anda.",
     },
   ];
 

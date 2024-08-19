@@ -5,7 +5,9 @@ const Footer = () => {
         <p>
           <span className="text-lg font-bold">iMemoraise - UIN Suska Riau</span>
           <br />
-          <span className="font-semibold italic underline">Integrated Quran Memorization Information System</span>
+          <span className="italic font-semibold underline">
+            Integrated Quran Memorization Information System
+          </span>
         </p>
         <p>
           Copyright © {new Date().getFullYear()} - Proudly created by{" "}
@@ -23,7 +25,7 @@ const Footer = () => {
             className="underline"
           >
             Alisi-USR
-          </a> {" "}
+          </a>{" "}
           Team with ❤️
         </p>
       </aside>
