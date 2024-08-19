@@ -1,8 +1,4 @@
-interface HeroProps {
-  isLogin: boolean;
-  onGoToDashboardClick: () => void;
-  onLoginClick: () => void;
-}
+import { HeroProps } from "../../interfaces/common.interfaces";
 
 const Hero = ({ isLogin, onGoToDashboardClick, onLoginClick }: HeroProps) => {
   return (
@@ -6070,22 +6066,21 @@ const Hero = ({ isLogin, onGoToDashboardClick, onLoginClick }: HeroProps) => {
           </defs>
         </svg>
       </div>
-      <div className="flex-col hero-content mt-1">
+      <div className="flex-col mt-1 hero-content">
         <div className="flex flex-col items-center max-w-xl">
-          <img
-            src="/kaligrafi.svg"
-            alt="Calligraphy"
-            className="w-56 h-56 mb-8"
-          />
+          <img src="/kaligrafi.svg" alt="Calligraphy" className="h-56 mb-8" />
           <h1 className="text-5xl font-bold">iMemoraise</h1>
-          <p className="mb-6 mt-4 text-center text-xl italic">
+          <p className="mt-4 mb-6 text-xl italic text-center">
             Integrated Quran Memorization Information System
           </p>
-          <button className="btn btn-primary" onClick={isLogin ? onGoToDashboardClick : onLoginClick}>
-            {isLogin ? "Lihat Dashboard" : "Memulai Sekarang"}
+          <button
+            className="btn btn-primary"
+            onClick={isLogin ? onGoToDashboardClick : onLoginClick}
+          >
+            {isLogin ? "Lihat Dashboard Anda" : "Memulai Sekarang"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 transform -rotate-45"
+              className="h-4 transform -rotate-45"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
