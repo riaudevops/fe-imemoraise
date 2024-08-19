@@ -1,4 +1,6 @@
 import { useTheme } from "../../hooks/useTheme.hooks";
+import Layout from "../../components/dashboard/Layout";
+import { sidebarMahasiswaItems } from "../../components/dashboard/SidebarItems";
 import DashboardMahasiswa from "../../components/dashboard/mahasiswa/DashboardMahasiswa";
 
 const DashboardMahasiswaPages = () => {
@@ -6,7 +8,14 @@ const DashboardMahasiswaPages = () => {
 
   return (
     <div data-theme={theme}>
-      <DashboardMahasiswa setTheme={setTheme} currentTheme={theme} />
+      <Layout
+        setTheme={setTheme}
+        currentTheme={theme}
+        sidebarItems={sidebarMahasiswaItems}
+        subpageTitle="Dashboard Mahasiswa"
+      >
+        <DashboardMahasiswa />
+      </Layout>
     </div>
   );
 };
