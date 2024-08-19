@@ -41,6 +41,7 @@ export interface dataSetoranMahasiswaProps {
   label: string;
   setoran?: [
     {
+      tgl_setoran: string;
       tgl_validasi: string;
       dosen: {
         nama: string;
@@ -51,7 +52,8 @@ export interface dataSetoranMahasiswaProps {
 
 export interface selectedDataForModalBoxInfoProps {
   surah: string;
-  tgl_validasi: string;
+  tgl_validasi?: string;
+  tgl_setoran: string;
   dosen: string;
 }
 
@@ -76,6 +78,7 @@ export interface dataSetoranMahasiswaPAProps {
   label: string;
   setoran?: [
     {
+      tgl_setoran: string;
       tgl_validasi: string;
       dosen: {
         nama: string;

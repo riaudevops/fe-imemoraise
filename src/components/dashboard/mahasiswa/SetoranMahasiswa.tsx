@@ -94,8 +94,8 @@ const SetoranMahasiswa = () => {
                 onClick={() =>
                   handleRowClick({
                     surah: data.nama,
-                    tgl_validasi: formatDateTime(
-                      data.setoran?.[0]?.tgl_validasi || ""
+                    tgl_setoran: formatDateTime(
+                      data.setoran?.[0]?.tgl_setoran || ""
                     ),
                     dosen: data.setoran?.[0]?.dosen?.nama || "",
                   })
@@ -108,7 +108,7 @@ const SetoranMahasiswa = () => {
                 </th>
                 <td className="font-bold text-base-content">{data.nama}</td>
                 <td className="italic underline text-base-content">
-                  {formatDateTime(data.setoran?.[0]?.tgl_validasi || "")}
+                  {formatDateTime(data.setoran?.[0]?.tgl_setoran || "")}
                 </td>
                 <td>
                   <div
@@ -148,14 +148,14 @@ const SetoranMahasiswa = () => {
               <p className="text-lg text-center">{selectedData?.surah}</p>
             </div>
 
-            {selectedData?.tgl_validasi ? (
+            {selectedData?.tgl_setoran ? (
               <>
                 <div className="w-full p-2 mt-4 font-medium bg-warning/20">
                   <p className="text-lg text-center">Tanggal Setoran Hafalan</p>
                 </div>
                 <div className="w-full p-2 bg-base-300">
                   <p className="text-lg text-center">
-                    {selectedData?.tgl_validasi}
+                    {selectedData?.tgl_setoran}
                   </p>
                 </div>
                 <div className="w-full p-2 mt-4 font-medium bg-warning/20">
