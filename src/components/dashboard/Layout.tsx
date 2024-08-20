@@ -2,6 +2,7 @@ import { LayoutProps } from "../../interfaces/common.interfaces";
 import { Link, useLocation } from "react-router-dom";
 import { useKeycloak } from "@react-keycloak/web";
 import ThemeSwitcher from "../ThemeSwitcher";
+import { useState } from "react";
 
 const Layout = ({
   setTheme,
@@ -12,6 +13,7 @@ const Layout = ({
 }: LayoutProps) => {
   const location = useLocation();
   const { keycloak } = useKeycloak();
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="h-full drawer lg:drawer-open">
@@ -48,7 +50,7 @@ const Layout = ({
             <ThemeSwitcher setTheme={setTheme} currentTheme={currentTheme} />
             <button
               className="btn btn-ghost text-primary"
-              onClick={() => keycloak.logout()}
+              onClick={() => setShowModal(true)}
             >
               <span className="hidden sm:inline">Sign Out</span>
               <svg
@@ -104,6 +106,40 @@ const Layout = ({
           ))}
         </ul>
       </div>
+
+			{showModal && (
+				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
+					<div className="modal-box lg:ml-10">
+						<h2 className="mb-6 text-xl font-bold">
+							Logout Confirmation ⚠🥵
+						</h2>
+
+            <p className="text-xl">
+              Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
+            </p>
+
+						<div className="modal-action">
+							<button
+								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
+								onClick={() => {
+                  keycloak.logout();
+								}}
+							>
+								Iyah, saya yakin
+							</button>
+							<button
+								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
+								onClick={() => {
+                  setShowModal(false);
+								}}
+							>
+								Gak jadi deh
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
+
     </div>
   );
 };

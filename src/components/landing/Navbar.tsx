@@ -1,6 +1,7 @@
 import { NavbarProps } from "../../interfaces/common.interfaces";
 import { Link } from "react-router-dom";
 import ThemeSwitcher from "../ThemeSwitcher";
+import { useState } from "react";
 
 const Navbar = ({
   setTheme,
@@ -9,6 +10,7 @@ const Navbar = ({
   onLoginClick,
   onGoToDashboardClick,
 }: NavbarProps) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="fixed z-10 flex justify-between shadow-sm bg-base-100/95 navbar">
       <div>
@@ -43,7 +45,7 @@ const Navbar = ({
         )}
         <button
           className={`btn ${isLogin ? "btn-error" : "btn-primary"}`}
-          onClick={onLoginClick}
+          onClick={isLogin ? () => {setShowModal(true)} : onLoginClick}
         >
           <span className="hidden sm:inline">
             {isLogin ? "Sign Out" : "Sign In"}
@@ -81,6 +83,40 @@ const Navbar = ({
           )}
         </button>
       </div>
+      
+      {showModal && (
+				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
+					<div className="modal-box lg:-ml-8">
+						<h2 className="mb-6 text-xl font-bold">
+							Logout Confirmation ⚠🥵
+						</h2>
+
+            <p className="text-xl">
+              Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
+            </p>
+
+						<div className="modal-action">
+							<button
+								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
+								onClick={() => {
+                  onLoginClick();
+								}}
+							>
+								Iyah, saya yakin
+							</button>
+							<button
+								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
+								onClick={() => {
+                  setShowModal(false);
+								}}
+							>
+								Gak jadi deh
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
+
     </div>
   );
 };
