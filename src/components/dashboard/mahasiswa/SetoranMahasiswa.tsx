@@ -26,20 +26,24 @@ const SetoranMahasiswa = () => {
   };
 
   useEffect(() => {
+    // Mengambil data nama, dan nim mahasiswa berdasarkan email
     axiosInstance
       .get(`/mahasiswa/info/${keycloak.tokenParsed?.email}`)
       .then((res) => res.data.data)
       .then((res) => {
+
         setNama(res.nama);
         setNim(res.nim);
+        
+        // Mengambil data setoran mahasiswa berdasarkan nim
+        axiosInstance
+          .get(`/mahasiswa/setoran/${res.nim}`)
+          .then((res) => res.data.data)
+          .then((res) => {
+            setDataSetoranMahasiswa(res);
+          });
       });
 
-    axiosInstance
-      .get(`/mahasiswa/setoran/${keycloak.tokenParsed?.email.split("@")[0]}`)
-      .then((res) => res.data.data)
-      .then((res) => {
-        setDataSetoranMahasiswa(res);
-      });
   }, [axiosInstance, keycloak.tokenParsed?.email]);
 
   return (
