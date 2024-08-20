@@ -11,6 +11,8 @@ const Navbar = ({
   onGoToDashboardClick,
 }: NavbarProps) => {
   const [showModal, setShowModal] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
+  
   return (
     <div className="fixed z-10 flex justify-between shadow-sm bg-base-100/95 navbar">
       <div>
@@ -95,14 +97,19 @@ const Navbar = ({
               Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
             </p>
 
+            {isLogout && <div className="w-full flex justify-center items-center py-2">
+              <span className="loading loading-bars loading-lg"></span>
+            </div>}
+
 						<div className="modal-action">
 							<button
 								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
 								onClick={() => {
+                  setIsLogout(true);
                   onLoginClick();
 								}}
 							>
-								Iyah, saya yakin
+                  {isLogout ? (<span>Sedang Logout...</span>) : (<span>Iyah, saya yakin</span>)}
 							</button>
 							<button
 								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"

@@ -14,6 +14,7 @@ const Layout = ({
   const location = useLocation();
   const { keycloak } = useKeycloak();
   const [showModal, setShowModal] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
 
   return (
     <div className="h-full drawer lg:drawer-open">
@@ -118,14 +119,19 @@ const Layout = ({
               Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
             </p>
 
+            {isLogout && <div className="w-full flex justify-center items-center py-2">
+              <span className="loading loading-bars loading-lg"></span>
+            </div>}
+
 						<div className="modal-action">
 							<button
 								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
 								onClick={() => {
+                  setIsLogout(true);
                   keycloak.logout();
 								}}
 							>
-								Iyah, saya yakin
+								{isLogout ? (<span>Sedang Logout...</span>) : (<span>Iyah, saya yakin</span>)}
 							</button>
 							<button
 								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
