@@ -8,18 +8,30 @@ import Hero from "../components/landing/Hero";
 import Features from "../components/landing/Features";
 import FAQs from "../components/landing/FAQs";
 import Footer from "../components/landing/Footer";
+import axios from "axios";
 
 const LandingPages = () => {
   const { theme, setTheme } = useTheme();
   const { keycloak, initialized } = useKeycloak(); // initialized is provided by useKeycloak hook to check if Keycloak is ready
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
+  
+  // Tampilkan loading atau null hingga Keycloak siap di init
   useEffect(() => {
     if (initialized) {
       setIsLoading(false);
     }
   }, [initialized]);
+
+  // Handle aksi apapun saat user telah terauntetikasi, seperti audit data ip log dsb nya
+  useEffect(() => {
+    if (keycloak.authenticated) {
+      axios.post(`${import.meta.env.VITE_API_URL}/akun`, {
+        email: keycloak.tokenParsed?.email,
+        nama: keycloak.tokenParsed?.name
+      })
+    }
+  }, [keycloak.authenticated]);
 
   const handleLogin = () => {
     if (keycloak.authenticated) {
