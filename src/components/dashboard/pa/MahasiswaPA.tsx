@@ -40,12 +40,11 @@ const MahasiswaPA = () => {
       .then((res) => res.data.data)
       .then((res: dataInfoMahasiswaPerAngkatanProps[]) => {
         setDataInfoMahasiswaPerAngkatan(res);
-        setAngkatan(res[0].tahun);
-        console.log(res);
+        setAngkatan(res[0]?.tahun);
       });
   }, [dataDosen]);
 
-  // dapatkan list detail mahasiswa perangkatan yang dipilih serta fitur search by nama & nim
+  // dapatkan list detail mahasiswa per-angkatan yang dipilih serta fitur search by nama & nim
   useEffect(() => {
     axiosInstance
       .get(
@@ -56,7 +55,6 @@ const MahasiswaPA = () => {
       .then((res) => res.data.data)
       .then((res: dataListMahasiswaPerAngkatanProps[]) => {
         setDataListMahasiswaPerAngkatan(res);
-        console.log(res);
       });
   }, [search, angkatan]);
 
@@ -73,6 +71,7 @@ const MahasiswaPA = () => {
                 setAngkatan(angkatan.tahun);
                 setActiveIndex(index);
               }}
+              key={angkatan.tahun}
             >
               <span className="text-lg text-black">{angkatan.tahun}</span>
               <div className="p-3 text-white bg-black border-none badge">
