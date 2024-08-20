@@ -35,7 +35,7 @@ const SetoranMahasiswa = () => {
       });
 
     axiosInstance
-      .get(`/mahasiswa/surah/${keycloak.tokenParsed?.email.split("@")[0]}`)
+      .get(`/mahasiswa/setoran/${keycloak.tokenParsed?.email.split("@")[0]}`)
       .then((res) => res.data.data)
       .then((res) => {
         setDataSetoranMahasiswa(res);
@@ -46,16 +46,16 @@ const SetoranMahasiswa = () => {
     <div className="flex flex-col gap-6 mt-2">
       <div className="flex justify-between h-12">
         <div className="font-semibold">
-          <div className="flex">
+          <div className="flex text-sm lg:text-base">
             <span className="w-16">Nama</span>
             <span>: {nama}</span>
           </div>
-          <div className="flex">
+          <div className="flex text-sm lg:text-base">
             <span className="w-16">NIM</span>
             <span>: {nim}</span>
           </div>
         </div>
-        <button className="text-lg font-semibold rounded-sm w-28 btn btn-outline btn-rounded-sm btn-primary">
+        <button className="text-lg font-semibold rounded-sm lg:w-28 btn btn-outline btn-rounded-sm btn-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ const SetoranMahasiswa = () => {
             <line x1="8" y1="17" x2="16" y2="17" />
             <line x1="8" y1="20" x2="16" y2="20" />
           </svg>
-          Cetak
+          <span className="hidden lg:inline">Cetak</span>
         </button>
       </div>
 

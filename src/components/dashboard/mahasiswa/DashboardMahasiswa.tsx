@@ -25,10 +25,10 @@ const DashboardMahasiswa = () => {
 
   return (
     <>
-      <p className="mt-2 text-2xl font-bold md:text-3xl">
+      <p className="mt-2 text-xl font-bold md:text-3xl">
         🔥 Progress Setoran hafalan mu...
       </p>
-      <p className="pt-2 pl-2 mb-6">
+      <p className="pt-2 pl-2 mb-6 text-sm lg:text-base">
         Berikut statistik progress dari setoran hafalan kamu untuk persyaratan
         akademik di UIN Suska Riau, Semangat terus yaa.. ❤💛
       </p>
