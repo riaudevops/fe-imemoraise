@@ -96,3 +96,12 @@ export interface selectedDataForModalBoxInfoPAProps {
   nomor_surah?: number;
   tgl_setoran?: string;
 }
+
+export interface DataProps {
+  x: string;
+  y: number;
+}
+
+export interface BarChartProps {
+  data: DataProps[];
+}
