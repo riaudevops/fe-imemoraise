@@ -3,7 +3,7 @@ const FAQs = () => {
     {
       question: "Apa itu iMemoraise?",
       answer:
-        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran di kampus. Platform ini memungkinkan dosen pembimbing akademik merekap setoran hafalan mahasiswa bimbingannya secara online, memantau perkembangan, dan lain sebagainya, mahasiswa pun dapat melihat perkembangan progres setoran ia, dan dapat lebih mempersiapkan mana surah yang harus ia setor untuk memenuhi persyaratan akademik tertentu.",
+        "iMemoraise adalah sebuah sistem informasi berbasis web yang dirancang untuk mendukung proses penyetoran dan pengelolaan hafalan ayat-ayat Al-Quran. Platform ini memungkinkan dosen pembimbing akademik merekap setoran hafalan mahasiswa bimbingannya secara online, memantau perkembangan hafalan, dan lain sebagainya, mahasiswa pun dapat melihat perkembangan progres setoran ia, dan dapat lebih mempersiapkan mana surah yang harus ia setor untuk memenuhi persyaratan akademik tertentu.",
     },
     {
       question: "Bagaimana cara mendaftar di iMemoraise?",
@@ -23,14 +23,19 @@ const FAQs = () => {
   ];
 
   return (
-    <div className="px-16 py-24 bg-base-100">
-      <h2 className="mb-8 text-3xl font-bold text-center">
-        Pertanyaan yang Sering Diajukan Mengenai iMemoraise.
-      </h2>
+    <section className="px-16 py-24 bg-base-100">
+      <p className="mb-8 text-3xl text-center">
+        <b>Pertanyaan yang Sering Diajukan Mengenai iMemoraise.</b>
+      </p>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <div key={index} className="collapse collapse-arrow bg-base-200/50">
-            <input type="radio" name="my-accordion-2" />
+            <input
+              type="radio"
+              title="QnA"
+              placeholder="..."
+              name="my-accordion-2"
+            />
             <div className="text-xl font-medium collapse-title">
               {faq.question}
             </div>
@@ -40,7 +45,7 @@ const FAQs = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
