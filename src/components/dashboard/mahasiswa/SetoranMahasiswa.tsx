@@ -1,19 +1,31 @@
+import { useEffect, useState, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 import useAxiosInstance from "../../../configs/axios.configs";
 import { useKeycloak } from "@react-keycloak/web";
-import { useEffect, useState } from "react";
 import {
   dataSetoranMahasiswaProps,
   selectedDataForModalBoxInfoProps,
 } from "../../../interfaces/common.interfaces";
-import { formatDateTime, labelPersyaratan } from "../Constant";
+import {
+  formatDateTime,
+  labelPersyaratan,
+  labelPersyaratanPDF,
+} from "../Constant";
 
 const SetoranMahasiswa = () => {
   const axiosInstance = useAxiosInstance();
   const { keycloak } = useKeycloak();
   const [nama, setNama] = useState<string>();
   const [nim, setNim] = useState<string>();
+  const [pa, setPa] = useState<string>();
+  const [nip, setNip] = useState<string>();
   const [showModal, setShowModal] = useState(false);
+  const componentRef = useRef<HTMLDivElement>(null);
 
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  
   const [dataSetoranMahasiswa, setDataSetoranMahasiswa] =
     useState<dataSetoranMahasiswaProps[]>();
 
@@ -31,10 +43,11 @@ const SetoranMahasiswa = () => {
       .get(`/mahasiswa/info/${keycloak.tokenParsed?.email}`)
       .then((res) => res.data.data)
       .then((res) => {
-
         setNama(res.nama);
         setNim(res.nim);
-        
+        setPa(res.dosen.nama);
+        setNip(res.dosen.nip);
+
         // Mengambil data setoran mahasiswa berdasarkan nim
         axiosInstance
           .get(`/mahasiswa/setoran/${res.nim}`)
@@ -43,8 +56,94 @@ const SetoranMahasiswa = () => {
             setDataSetoranMahasiswa(res);
           });
       });
-
   }, [axiosInstance, keycloak.tokenParsed?.email]);
+
+  const PrintableContent: React.FC = () => (
+    <div className="relative p-12">
+      {/* Header */}
+      <div className="flex mb-4">
+        <img src="/uin-suska.svg" alt="Logo" className="w-20 h-20 mr-4" />
+        <span className="text-sm">
+          <span className="font-bold">KARTU SETORAN HAFALAN JUZ 30</span> <br />
+          PROGRAM STUDI TEKNIK INFORMATIKA <br /> FAKULTAS SAINS DAN TEKNOLOGI{" "}
+          <br />
+          UNIVERSITAS ISLAM NEGERI SULTAN SYARIF KASIM RIAU
+        </span>
+      </div>
+
+      {/* Student Info */}
+      <div className="mb-4">
+        <div className="flex text-xs">
+          <span className="w-36">Nama Mahasiswa</span>
+          <span>: {nama}</span>
+        </div>
+        <div className="flex text-xs">
+          <span className="w-36">NIM</span>
+          <span>: {nim}</span>
+        </div>
+        <div className="flex text-xs">
+          <span className="w-36">Pembimbing Akademik</span>
+          <span>: {pa}</span>
+        </div>
+      </div>
+
+      {/* Table Setoran */}
+      <table className="w-full text-xs text-center table-auto">
+        <thead className="text-xs font-bold text-white bg-black">
+          <tr>
+            <th className="p-1">No.</th>
+            <th className="p-1">Nama Surah</th>
+            <th className="p-1">Tanggal Setoran Hafalan</th>
+            <th className="p-1">Persyaratan Setoran</th>
+            <th className="p-1">Dosen yang Mengesahkan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dataSetoranMahasiswa?.map((data, index) => (
+            <tr key={index} className="odd:bg-base-200 even:bg-base-300">
+              <td>
+                {data.setoran?.length ? "" : ""} {index + 1}.
+              </td>
+              <td>{data.nama}</td>
+              <td className="italic underline">
+                {formatDateTime(data.setoran?.[0]?.tgl_setoran || "")}
+              </td>
+              <td>
+                <div className={`${labelPersyaratanPDF(data.label)[0]}`}>
+                  <p>{labelPersyaratanPDF(data.label)[1]}</p>
+                </div>
+              </td>
+              <td className="italic underline">
+                {data.setoran?.[0]?.dosen.nama}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Date and Signature Section */}
+      <div className="absolute mt-8 text-xs right-14 -bottom-20">
+        <p>
+          Pekanbaru,{" "}
+          {new Date().toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+        <div className="flex flex-col items-start">
+          <div>
+            <p>Pembimbing Akademik,</p>
+          </div>
+          <div className="h-8" />
+          <div>
+            <p className="underline">{pa}</p>
+            <p className="-mt-0.5">NIP. {nip}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-6 mt-2">
@@ -59,7 +158,10 @@ const SetoranMahasiswa = () => {
             <span>: {nim}</span>
           </div>
         </div>
-        <button className="text-lg font-semibold rounded-sm lg:w-28 btn btn-outline btn-rounded-sm btn-primary">
+        <button
+          onClick={handlePrint}
+          className="text-lg font-semibold rounded-sm lg:w-28 btn btn-outline btn-rounded-sm btn-primary"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -78,6 +180,13 @@ const SetoranMahasiswa = () => {
           </svg>
           <span className="hidden lg:inline">Cetak</span>
         </button>
+      </div>
+
+      {/* Printable Content (Hidden) */}
+      <div style={{ display: "none" }}>
+        <div ref={componentRef}>
+          <PrintableContent />
+        </div>
       </div>
 
       {/* Table Setoran */}
