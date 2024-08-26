@@ -15,6 +15,23 @@ export const labelPersyaratan = (persyaratan: string) => {
   }
 };
 
+export const labelPersyaratanPDF = (persyaratan: string) => {
+  switch (persyaratan) {
+    case "KP":
+      return ["bg-success/10", "Kerja Praktek"];
+    case "SEMKP":
+      return ["bg-warning/10", "Seminar Kerja Praktek"];
+    case "DAFTAR_TA":
+      return ["bg-accent/10", "Pendaftaran Judul TA"];
+    case "SEMPRO":
+      return ["bg-primary/10", "Seminar Proposal"];
+    case "SIDANG_TA":
+      return ["bg-error/10", "Sidang Tugas Akhir"];
+    default:
+      return "";
+  }
+};
+
 export const formatDateTime = (isoString: string) => {
   if (!isoString) return "";
 
