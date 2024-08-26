@@ -12,7 +12,7 @@ const MahasiswaPAPages = () => {
         setTheme={setTheme}
         currentTheme={theme}
         sidebarItems={sidebarPAItems}
-        subpageTitle="Mahasiswa Bimbingan Anda"
+        subpageTitle="Mahasiswa Bimbingan Akademik"
       >
         <MahasiswaPA />
       </Layout>

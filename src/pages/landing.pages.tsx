@@ -15,7 +15,7 @@ const LandingPages = () => {
   const { keycloak, initialized } = useKeycloak(); // initialized is provided by useKeycloak hook to check if Keycloak is ready
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  
+
   // Tampilkan loading atau null hingga Keycloak siap di init
   useEffect(() => {
     if (initialized) {
@@ -28,8 +28,8 @@ const LandingPages = () => {
     if (keycloak.authenticated) {
       axios.post(`${import.meta.env.VITE_API_URL}/akun`, {
         email: keycloak.tokenParsed?.email,
-        nama: keycloak.tokenParsed?.name
-      })
+        nama: keycloak.tokenParsed?.name,
+      });
     }
   }, [keycloak.authenticated]);
 

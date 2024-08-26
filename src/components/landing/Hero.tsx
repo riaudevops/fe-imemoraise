@@ -2,7 +2,7 @@ import { HeroProps } from "../../interfaces/common.interfaces";
 
 const Hero = ({ isLogin, onGoToDashboardClick, onLoginClick }: HeroProps) => {
   return (
-    <div className="relative min-h-screen pt-16 overflow-hidden hero bg-base-100">
+    <section className="relative min-h-screen pt-16 overflow-hidden hero bg-base-100">
       <div className="absolute left-0 -top-1">
         <svg
           width="1920"
@@ -6095,7 +6095,7 @@ const Hero = ({ isLogin, onGoToDashboardClick, onLoginClick }: HeroProps) => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

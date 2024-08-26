@@ -41,7 +41,10 @@ const Layout = ({
               </svg>
             </label>
             <span className="text-lg font-semibold">
-              <button className="hidden lg:inline btn btn-rounded-sm btn-ghost text-error px-2 p-0 mr-1" onClick={() => window.history.back()}>
+              <button
+                className="hidden lg:inline btn btn-rounded-sm btn-ghost text-error px-2 p-0 mr-1"
+                onClick={() => window.history.back()}
+              >
                 <span className="underline">{"< Kembali"}</span>
               </button>
               <span className="text-sm lg:text-lg">{subpageTitle}</span>
@@ -108,44 +111,47 @@ const Layout = ({
         </ul>
       </div>
 
-			{showModal && (
-				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
-					<div className="modal-box lg:ml-10">
-						<h2 className="mb-6 text-xl font-bold">
-							Logout Confirmation ⚠🥵
-						</h2>
+      {showModal && (
+        <div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
+          <div className="modal-box lg:ml-10">
+            <h2 className="mb-6 text-xl font-bold">Logout Confirmation ⚠🥵</h2>
 
             <p className="text-xl">
               Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
             </p>
 
-            {isLogout && <div className="w-full flex justify-center items-center py-2">
-              <span className="loading loading-bars loading-lg"></span>
-            </div>}
+            {isLogout && (
+              <div className="w-full flex justify-center items-center py-2">
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
 
-						<div className="modal-action">
-							<button
-								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
-								onClick={() => {
+            <div className="modal-action">
+              <button
+                className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
+                onClick={() => {
                   setIsLogout(true);
                   keycloak.logout();
-								}}
-							>
-								{isLogout ? (<span>Sedang Logout...</span>) : (<span>Iyah, saya yakin</span>)}
-							</button>
-							<button
-								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
-								onClick={() => {
+                }}
+              >
+                {isLogout ? (
+                  <span>Sedang Logout...</span>
+                ) : (
+                  <span>Iyah, saya yakin</span>
+                )}
+              </button>
+              <button
+                className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
+                onClick={() => {
                   setShowModal(false);
-								}}
-							>
-								Gak jadi deh
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-
+                }}
+              >
+                Gak jadi deh
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
