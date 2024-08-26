@@ -12,7 +12,7 @@ const Navbar = ({
 }: NavbarProps) => {
   const [showModal, setShowModal] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
-  
+
   return (
     <div className="fixed z-10 flex justify-between shadow-sm bg-base-100/95 navbar">
       <div>
@@ -47,7 +47,13 @@ const Navbar = ({
         )}
         <button
           className={`btn ${isLogin ? "btn-error" : "btn-primary"}`}
-          onClick={isLogin ? () => {setShowModal(true)} : onLoginClick}
+          onClick={
+            isLogin
+              ? () => {
+                  setShowModal(true);
+                }
+              : onLoginClick
+          }
         >
           <span className="hidden sm:inline">
             {isLogin ? "Sign Out" : "Sign In"}
@@ -85,45 +91,48 @@ const Navbar = ({
           )}
         </button>
       </div>
-      
+
       {showModal && (
-				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
-					<div className="modal-box lg:-ml-8">
-						<h2 className="mb-6 text-xl font-bold">
-							Logout Confirmation ⚠🥵
-						</h2>
+        <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen bg-black bg-opacity-50">
+          <div className="modal-box lg:-ml-8">
+            <h2 className="mb-6 text-xl font-bold">Logout Confirmation ⚠🥵</h2>
 
             <p className="text-xl">
               Apakah kamu yakin mau logout dari aplikasi iMemoraise inih?
             </p>
 
-            {isLogout && <div className="w-full flex justify-center items-center py-2">
-              <span className="loading loading-bars loading-lg"></span>
-            </div>}
+            {isLogout && (
+              <div className="flex items-center justify-center w-full py-2">
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
 
-						<div className="modal-action">
-							<button
-								className="w-1/2 btn btn-rounded-sm btn-outline btn-error text-lg"
-								onClick={() => {
+            <div className="modal-action">
+              <button
+                className="w-1/2 text-lg btn btn-rounded-sm btn-outline btn-error"
+                onClick={() => {
                   setIsLogout(true);
                   onLoginClick();
-								}}
-							>
-                  {isLogout ? (<span>Sedang Logout...</span>) : (<span>Iyah, saya yakin</span>)}
-							</button>
-							<button
-								className="w-1/2 btn btn-rounded-sm btn-warning text-lg"
-								onClick={() => {
+                }}
+              >
+                {isLogout ? (
+                  <span>Sedang Logout...</span>
+                ) : (
+                  <span>Iyah, saya yakin</span>
+                )}
+              </button>
+              <button
+                className="w-1/2 text-lg btn btn-rounded-sm btn-warning"
+                onClick={() => {
                   setShowModal(false);
-								}}
-							>
-								Gak jadi deh
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-
+                }}
+              >
+                Gak jadi deh
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
