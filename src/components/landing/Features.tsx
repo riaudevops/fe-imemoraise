@@ -21,10 +21,10 @@ const Features = () => {
   ];
 
   return (
-    <div className="px-16 py-24 bg-base-200/50">
-      <h2 className="mb-8 text-3xl font-bold text-center">
-        Mengapa Harus iMemoraise?
-      </h2>
+    <section className="px-16 py-24 bg-base-200/50">
+      <p className="mb-8 text-3xl text-center">
+        <b>Mengapa Harus iMemoraise?</b>
+      </p>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {features.map((feature, index) => (
           <div key={index} className="p-4 shadow-xl card bg-base-100">
@@ -36,7 +36,7 @@ const Features = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
