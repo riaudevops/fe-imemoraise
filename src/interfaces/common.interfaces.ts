@@ -78,6 +78,7 @@ export interface dataSetoranMahasiswaPAProps {
   label: string;
   setoran?: [
     {
+      id: string;
       tgl_setoran: string;
       tgl_validasi: string;
       dosen: {
@@ -88,8 +89,10 @@ export interface dataSetoranMahasiswaPAProps {
 }
 
 export interface selectedDataForModalBoxInfoPAProps {
-  nim: string;
-  nama: string;
-  surah: string;
-  nomor_surah: number;
+  id_setoran?: string;
+  nim?: string;
+  nama?: string;
+  surah?: string;
+  nomor_surah?: number;
+  tgl_setoran?: string;
 }
