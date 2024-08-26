@@ -14,7 +14,8 @@ const MahasiswaPASetoran = () => {
 	const [nama, setNama] = useState("");
 	const [nim, setNim] = useState("");
 	const [nip, setNip] = useState("");
-	const [showModal, setShowModal] = useState(false);
+	const [showModalACC, setshowModalACC] = useState(false);
+	const [showModalCancel, setshowModalCancel] = useState(false);
 	const [isChecked, setIsChecked] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [setoranDate, setSetoranDate] = useState<Date>(new Date());
@@ -30,9 +31,14 @@ const MahasiswaPASetoran = () => {
 	const [selectedData, setSelectedData] =
 		useState<selectedDataForModalBoxInfoPAProps>();
 
-	const handleRowClick = (data: selectedDataForModalBoxInfoPAProps) => {
+	const handleACCRowClick = (data: selectedDataForModalBoxInfoPAProps) => {
 		setSelectedData(data);
-		setShowModal(true);
+		setshowModalACC(true);
+	};
+
+	const handleCancelRowClick = (data: selectedDataForModalBoxInfoPAProps) => {
+		setSelectedData(data);
+		setshowModalCancel(true);
 	};
 
 	const fetchDataSetoranMahasiswa = () => {
@@ -69,10 +75,10 @@ const MahasiswaPASetoran = () => {
 		}
 	}, [alertInfo]);
 
-	const handleValidation = () => {
+	const handleValidationSetoran = () => {
 		setIsLoading(true);
 		axiosInstance
-			.post(`/dosen/mahasiswa`, {
+			.post(`/dosen/mahasiswa/setoran`, {
 				nim: nim,
 				nip: nip,
 				nomor_surah: selectedData?.nomor_surah,
@@ -80,7 +86,30 @@ const MahasiswaPASetoran = () => {
 			})
 			.then((res) => res.data)
 			.then((res) => {
-				setShowModal(false);
+				setshowModalACC(false);
+				setIsChecked(false);
+				setSetoranDate(new Date());
+				setAlertInfo({ type: "success", message: res.message });
+				fetchDataSetoranMahasiswa();
+			})
+			.catch((error) => {
+				setAlertInfo({
+					type: "error",
+					message: "Validasi gagal: " + error.response.data.message,
+				});
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	};
+
+	const handleCancelSetoran = () => {
+		setIsLoading(true);
+		axiosInstance
+			.delete(`/dosen/mahasiswa/setoran/${selectedData?.id_setoran}`)
+			.then((res) => res.data)
+			.then((res) => {
+				setshowModalCancel(false);
 				setIsChecked(false);
 				setAlertInfo({ type: "success", message: res.message });
 				fetchDataSetoranMahasiswa();
@@ -169,97 +198,226 @@ const MahasiswaPASetoran = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{dataSetoranMahasiswa?.map((data, index) => (
-							<tr
-								key={index}
-								className="text-neutral-content odd:bg-base-200 even:bg-base-300 hover:bg-base-100 active:bg-base-300"
-							>
-								<th className="text-base-content">
-									{data.setoran?.length ? "✔" : ""} {index + 1}.
-								</th>
-								<td className="font-bold text-base-content">{data.nama}</td>
-								<td className="italic underline text-base-content">
-									{formatDateTime(data.setoran?.[0]?.tgl_setoran || "")}
-								</td>
-								<td>
-									<div
-										className={` ${
-											labelPersyaratan(data.label)[0]
-										} py-2 rounded-sm`}
-									>
-										<p className="font-semibold text-base-content">
-											{labelPersyaratan(data.label)[1]}
-										</p>
-									</div>
-								</td>
-								<td className="italic underline text-base-content">
-									{data.setoran?.[0]?.dosen.nama}
-								</td>
-								<td>
-									<button
-										onClick={() =>
-											handleRowClick({
-												nama: nama,
-												nim: nim,
-												surah: data.nama,
-												nomor_surah: data.nomor,
-											})
-										}
-										className={`btn ${
-											data.setoran?.length && "btn-disabled"
-										} btn-sm btn-base-100 rounded-sm btn-outline`}
-									>
-										ACC
-									</button>
-								</td>
-							</tr>
-						))}
+						{dataSetoranMahasiswa?.map(
+							(data: dataSetoranMahasiswaPAProps, index) => (
+								<tr
+									key={index}
+									className="text-neutral-content odd:bg-base-200 even:bg-base-300 hover:bg-base-100 active:bg-base-300"
+								>
+									<th className="text-base-content">
+										{data.setoran?.length ? "✔" : ""} {index + 1}.
+									</th>
+									<td className="font-bold text-base-content">{data.nama}</td>
+									<td className="italic underline text-base-content">
+										{formatDateTime(data.setoran?.[0]?.tgl_setoran || "")}
+									</td>
+									<td>
+										<div
+											className={` ${
+												labelPersyaratan(data.label)[0]
+											} py-2 rounded-sm`}
+										>
+											<p className="font-semibold text-base-content">
+												{labelPersyaratan(data.label)[1]}
+											</p>
+										</div>
+									</td>
+									<td className="italic underline text-base-content">
+										{data.setoran?.[0]?.dosen.nama}
+									</td>
+									<td>
+										{data.setoran?.length ? (
+											<button
+												onClick={() =>
+													handleCancelRowClick({
+														id_setoran: data.setoran?.[0]?.id,
+														nama: nama,
+														nim: nim,
+														surah: data.nama,
+														tgl_setoran: data.setoran?.[0]?.tgl_setoran,
+													})
+												}
+												className={`btn btn-sm btn-error rounded-sm btn-outline`}
+											>
+												❌ Batalkan
+											</button>
+										) : (
+											<button
+												onClick={() =>
+													handleACCRowClick({
+														nama: nama,
+														nim: nim,
+														surah: data.nama,
+														nomor_surah: data.nomor,
+													})
+												}
+												className={`btn btn-sm btn-base-100 rounded-sm btn-outline`}
+											>
+												✔ ACC
+											</button>
+										)}
+									</td>
+								</tr>
+							)
+						)}
 					</tbody>
 				</table>
 			</div>
 
-			{showModal && (
+			{showModalCancel && (
 				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
 					<div className="modal-box lg:ml-10">
 						<h2 className="mb-6 text-xl font-bold text-center">
-							Validasi Pengesahan Anda:
+							❌ Pembatalan Validasi Setoran ❌
 						</h2>
 
-						<div className="w-full p-2 mt-3 font-medium bg-warning/20">
-							<p className="text-lg text-center">Nama Mahasiswa</p>
-						</div>
-						<div className="w-full p-2 bg-base-300">
-							<p className="text-lg text-center">{selectedData?.nama}</p>
-						</div>
-						<div className="w-full p-2 mt-3 font-medium bg-warning/20">
-							<p className="text-lg text-center">NIM</p>
-						</div>
-						<div className="w-full p-2 bg-base-300">
-							<p className="text-lg text-center">{selectedData?.nim}</p>
-						</div>
-						<div className="w-full p-2 mt-3 font-medium bg-warning/20">
-							<p className="text-lg text-center">Nama Surah</p>
-						</div>
-						<div className="w-full p-2 bg-base-300">
-							<p className="text-lg text-center">{selectedData?.surah}</p>
-						</div>
-						<div className="w-full p-2 mt-3 font-medium bg-warning/20">
-							<p className="text-lg text-center">
-								Tanggal Setoran Hafalan (opsional)
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">Nama Mahasiswa</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.nama}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full focus:outline-0 cursor-not-allowed"
+							/>
+						</label>
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">NIM</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.nim}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full focus:outline-0 cursor-not-allowed"
+							/>
+						</label>
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">Nama Surah yang di-Setorkan</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.surah}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full cursor-not-allowed focus:outline-0"
+							/>
+						</label>
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">Tanggal Setoran Hafalan</span>
+							</div>
+							<input
+								type="text"
+								value={formatDateTime(selectedData?.tgl_setoran || "")}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full cursor-not-allowed focus:outline-0"
+							/>
+						</label>
+
+						<div className="flex justify-start gap-3 mt-6">
+							<input
+								type="checkbox"
+								onChange={() => setIsChecked(!isChecked)}
+								className="checkbox border-orange-400 [--chkbg:theme(colors.indigo.600)] [--chkfg:orange] checked:border-indigo-800"
+							/>
+							<p>
+								Saya yakin untuk{" "}
+								<span className="italic font-bold">
+									membatalkan validasi hafalan surat
+								</span>{" "}
+								mahasiswa tersebut.
 							</p>
 						</div>
-						<div className="w-full p-2 text-center bg-base-300 flex flex-col gap-3">
+
+						<div className="modal-action">
+							<button
+								className="w-1/2 btn btn-rounded-sm btn-error"
+								onClick={() => {
+									setshowModalCancel(false);
+									setIsChecked(false);
+								}}
+								disabled={isLoading}
+							>
+								❌ Gak jadi deh!
+							</button>
+
+							<button
+								className={`w-1/2 btn btn-rounded-sm btn-success ${
+									(!isChecked || isLoading) && "btn-disabled"
+								}`}
+								onClick={handleCancelSetoran}
+							>
+								{isLoading ? (
+									<span className="loading loading-spinner"></span>
+								) : (
+									"✔ Iya, batalkan validasinya!"
+								)}
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
+
+			{showModalACC && (
+				<div className="flex justify-center items-center bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 z-50">
+					<div className="modal-box lg:ml-10">
+						<h2 className="mb-6 text-xl font-bold text-center">
+							✔ Validasi Pengesahan Anda ✔
+						</h2>
+
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">Nama Mahasiswa</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.nama}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full focus:outline-0 cursor-not-allowed"
+							/>
+						</label>
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">NIM</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.nim}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full focus:outline-0 cursor-not-allowed"
+							/>
+						</label>
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">Nama Surah yang di-Setorkan</span>
+							</div>
+							<input
+								type="text"
+								value={selectedData?.surah}
+								readOnly
+								className="bg-base-200/70 input input-bordered w-full cursor-not-allowed focus:outline-0"
+							/>
+						</label>
+
+						<label className="form-control w-full">
+							<div className="label">
+								<span className="label-text">
+									Tanggal Setoran Hafalan{" "}
+									<span className="italic">
+										(klik ikon kalender untuk mengubah)
+									</span>
+								</span>
+							</div>
 							<input
 								type="date"
-								className="input input-bordered"
+								value={setoranDate.toISOString().split("T")[0]}
+								max={new Date().toISOString().split("T")[0]}
 								onChange={(e) => setSetoranDate(new Date(e.target.value))}
+								className="input input-bordered w-full cursor-default focus:outline-0"
 							/>
-							<span>
-								<span className="font-bold">notes:</span> jika tanggal setoran
-								tidak ditentukan secara manual, akan di tetapkan sesuai tanggal
-								hari ini secara default.
-							</span>
-						</div>
+						</label>
 
 						<div className="flex justify-start gap-3 mt-6">
 							<input
@@ -278,26 +436,28 @@ const MahasiswaPASetoran = () => {
 
 						<div className="modal-action">
 							<button
+								className="w-1/2 btn btn-rounded-sm btn-error"
+								onClick={() => {
+									setshowModalACC(false);
+									setIsChecked(false);
+									setSetoranDate(new Date());
+								}}
+								disabled={isLoading}
+							>
+								❌ Batalkan
+							</button>
+
+							<button
 								className={`w-1/2 btn btn-rounded-sm btn-success ${
 									(!isChecked || isLoading) && "btn-disabled"
 								}`}
-								onClick={handleValidation}
+								onClick={handleValidationSetoran}
 							>
 								{isLoading ? (
 									<span className="loading loading-spinner"></span>
 								) : (
-									"Validasi"
+									"✔ Validasi"
 								)}
-							</button>
-							<button
-								className="w-1/2 btn btn-rounded-sm btn-error"
-								onClick={() => {
-									setShowModal(false);
-									setIsChecked(false);
-								}}
-								disabled={isLoading}
-							>
-								Batalkan
 							</button>
 						</div>
 					</div>
