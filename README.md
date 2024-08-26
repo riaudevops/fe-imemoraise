@@ -21,21 +21,20 @@
     <img src="https://img.shields.io/circleci/project/github/riaudevops/fe-imemoraise/master.svg?style=flat-square" alt="CircleCI branch" />
   </a>
   <a href="https://github.com/riaudevops/fe-imemoraise/network">
-    <img src="https://img.shields.io/github/forks/riaudevops/fe-imemoraise.svg" alt="GitHub forks" />
+    <img src="https://img.shields.io/github/forks/riaudevops/fe-imemoraise.svg" alt="GitHub Forks" />
   </a>
   <a href="https://github.com/riaudevops/fe-imemoraise/stargazers">
-    <img src="https://img.shields.io/github/stars/riaudevops/fe-imemoraise.svg" alt="GitHub stars" />
+    <img src="https://img.shields.io/github/stars/riaudevops/fe-imemoraise.svg" alt="GitHub Stars" />
   </a>
   <a href="https://github.com/riaudevops/fe-imemoraise/issues">
-    <img src="https://img.shields.io/github/issues/riaudevops/fe-imemoraise.svg" alt="GitHub issues" />
+    <img src="https://img.shields.io/github/issues/riaudevops/fe-imemoraise.svg" alt="GitHub Issues" />
   </a>
   <a href="https://github.com/riaudevops/fe-imemoraise/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/riaudevops/fe-imemoraise.svg" alt="GitHub license" />
+    <img src="https://img.shields.io/github/license/riaudevops/fe-imemoraise.svg" alt="GitHub License" />
   </a>
   <a href="https://coveralls.io/github/riaudevops/fe-imemoraise">
     <img src="https://coveralls.io/repos/github/riaudevops/fe-imemoraise/badge.svg" alt="Coverage Status" />
   </a>
-
 </div>
 
 ---
