@@ -56,7 +56,7 @@ const SetoranMahasiswa = () => {
             setDataSetoranMahasiswa(res);
           });
       });
-  }, [axiosInstance, keycloak.tokenParsed?.email]);
+  }, [keycloak.tokenParsed?.email]);
 
   const PrintableContent: React.FC = () => (
     <div className="relative p-12">
@@ -194,8 +194,8 @@ const SetoranMahasiswa = () => {
         <table className="table text-sm text-center table-auto">
           <thead className="sticky top-0 text-sm font-bold rounded-md bg-primary text-base-100">
             <tr>
-              <th>No.</th>
-              <th>Nama Surah</th>
+              <th className="min-w-20">No.</th>
+              <th className="min-w-40">Nama Surah</th>
               <th>Tanggal Setoran Hafalan</th>
               <th>Persyaratan Setoran</th>
               <th>Dosen yang Mengesahkan</th>
