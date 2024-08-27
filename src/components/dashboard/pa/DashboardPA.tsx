@@ -29,6 +29,7 @@ const DashboardPA = () => {
         jangka waktu sebulan... ❤💛
       </p>{" "}
       <BarChart data={stats} />
+      <span className="text-sm italic">*data tersebut dihitung dari kuantitas aksi acc setoran terhadap mhs bimbingan anda perhari selama sebulan belakangan ini...</span>
     </div>
   );
 };
