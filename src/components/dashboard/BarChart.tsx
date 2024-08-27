@@ -1,13 +1,13 @@
 import { BarChartProps } from "../../interfaces/common.interfaces";
 
 const BarChart: React.FC<BarChartProps> = ({ data }) => {
-  const chartHeight = 400;
-  const barWidth = 64;
+  const chartHeight = 450;
+  const barWidth = 80;
   const maxTotal = Math.max(...data.map((d) => d.y));
 
   return (
     <svg
-      className="flex justify-end w-full h-full pt-5 border border-neutral-content"
+      className="flex justify-end w-full h-full pt-5 px-2 mb-2 border border-neutral-content"
       height={chartHeight}
     >
       {data.map((d, i) => {
@@ -19,7 +19,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
               y={chartHeight - barHeight}
               width={barWidth}
               height={barHeight}
-              className="fill-primary"
+              className="fill-primary hover:fill-primary/70"
             />
             <text
               x={i * (barWidth + 5) + barWidth / 2}
@@ -29,6 +29,15 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
               fontSize="15"
             >
               {d.y}x acc
+            </text>
+            <text
+              x={i * (barWidth + 5) + barWidth / 2}
+              y={chartHeight - barHeight + 54}
+              textAnchor="middle"
+              className="font-bold fill-base-100 text-xs underline italic"
+              fontSize="15"
+            >
+              {d.x.split("T")[0]}
             </text>
           </g>
         );
