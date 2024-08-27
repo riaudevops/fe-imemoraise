@@ -100,9 +100,9 @@ const MahasiswaPA = () => {
             placeholder="Cari mahasiswa berdasarkan Nama ataupun NIM..."
           />
         </label>
-        <div className="overflow-auto bg-base-100">
+        <div className="overflow-auto h-[calc(100vh-176px)]">
           <table className="table w-full text-base text-center table-zebra">
-            <thead className="text-base font-bold bg-base-300">
+            <thead className="text-base font-bold bg-base-300 sticky top-0">
               <tr>
                 <th className="w-16">No.</th>
                 <th className="w-96">NIM</th>
@@ -113,7 +113,7 @@ const MahasiswaPA = () => {
             <tbody>
               {dataListMahasiswaPerAngkatan?.map(
                 (mahasiswa: dataListMahasiswaPerAngkatanProps, index) => (
-                  <tr key={index}>
+                  <tr key={index} className="odd:bg-base-100 even:bg-base-300/40">
                     <td className="w-16">{index + 1}.</td>
                     <td className="w-96">{mahasiswa.nim}</td>
                     <td className="w-96">{mahasiswa.nama}</td>
