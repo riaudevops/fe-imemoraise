@@ -75,8 +75,10 @@ const MahasiswaPASetoran = () => {
   }, [location.search]);
 
   useEffect(() => {
-    fetchDataSetoranMahasiswa();
-  }, [axiosInstance, nim]);
+    if (nim) {  // Cek apakah nim sudah memiliki nilai
+      fetchDataSetoranMahasiswa();
+    }
+  }, [nim]);
 
   useEffect(() => {
     if (alertInfo) {
@@ -178,7 +180,7 @@ const MahasiswaPASetoran = () => {
         </div>
         <button
           onClick={() => setShowModalStats(true)}
-          className="w-40 font-semibold rounded-sm btn btn-outline btn-rounded-sm btn-primary"
+          className="sm:w-40 font-semibold rounded-sm btn btn-outline btn-rounded-sm btn-primary"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +197,7 @@ const MahasiswaPASetoran = () => {
             <rect x="17" y="3" width="4" height="17" />
             <line x1="1" y1="21" x2="23" y2="21" />
           </svg>
-          Lihat Statistik
+          <span className="hidden sm:block">Lihat Statistik</span>
         </button>
       </div>
 
@@ -204,8 +206,8 @@ const MahasiswaPASetoran = () => {
         <table className="table text-sm text-center table-auto">
           <thead className="sticky top-0 text-sm font-bold rounded-md bg-primary text-base-100">
             <tr>
-              <th>No.</th>
-              <th>Nama Surah</th>
+              <th className="min-w-20">No.</th>
+              <th className="min-w-40">Nama Surah</th>
               <th>Tanggal Setoran Hafalan</th>
               <th>Persyaratan Setoran</th>
               <th>Dosen yang Mengesahkan</th>
@@ -254,7 +256,7 @@ const MahasiswaPASetoran = () => {
                         }
                         className={`btn btn-sm btn-error rounded-sm btn-outline`}
                       >
-                        ❌ Batalkan
+                        ❌ <span className="hidden xl:block">Batalkan</span>
                       </button>
                     ) : (
                       <button
@@ -268,7 +270,7 @@ const MahasiswaPASetoran = () => {
                         }
                         className={`btn btn-sm btn-base-100 rounded-sm btn-outline`}
                       >
-                        ✔ ACC
+                        ✔ <span className="hidden xl:block">ACC</span>
                       </button>
                     )}
                   </td>
@@ -280,10 +282,10 @@ const MahasiswaPASetoran = () => {
       </div>
 
       {showModalStats && (
-        <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen bg-black bg-opacity-50">
-          <div className="relative w-11/12 max-w-2xl p-6 rounded-lg modal-box bg-base-200">
+        <div onClick={() => setShowModalStats(false)} className="cursor-pointer fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen bg-black bg-opacity-50">
+          <div onClick={(e) => e.stopPropagation()} className="cursor-default relative w-11/12 max-w-2xl p-6 rounded-lg modal-box bg-base-200">
             <h2 className="mb-6 text-2xl font-bold text-center">
-              🔥 Statistik Hafalan Mahasiswa
+              🔥 Statistik Hafalan Mahasiswa 🔥
             </h2>
             <div className="space-y-6">
               {statsInfoSetoranMahasiswa?.map(
@@ -323,14 +325,6 @@ const MahasiswaPASetoran = () => {
                 )
               )}
             </div>
-            <div className="flex justify-center mt-6">
-              <button
-                className="w-1/3 btn btn-error"
-                onClick={() => setShowModalStats(false)}
-              >
-                Tutup
-              </button>
-            </div>
           </div>
         </div>
       )}
@@ -338,7 +332,7 @@ const MahasiswaPASetoran = () => {
       {showModalCancel && (
         <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen bg-black bg-opacity-50">
           <div className="modal-box lg:ml-10">
-            <h2 className="mb-6 text-xl font-bold text-center">
+            <h2 className="mb-6 text-lg sm:text-xl font-bold text-center">
               ❌ Pembatalan Validasi Setoran ❌
             </h2>
 
@@ -434,7 +428,7 @@ const MahasiswaPASetoran = () => {
       {showModalACC && (
         <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen bg-black bg-opacity-50">
           <div className="modal-box lg:ml-10">
-            <h2 className="mb-6 text-xl font-bold text-center">
+            <h2 className="mb-6 text-lg sm:text-xl font-bold text-center">
               ✔ Validasi Pengesahan Anda ✔
             </h2>
 
