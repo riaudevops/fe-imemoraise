@@ -26,7 +26,7 @@ const LandingPages = () => {
   // Handle aksi apapun saat user telah terauntetikasi, seperti audit data ip log dsb nya
   useEffect(() => {
     if (keycloak.authenticated) {
-      axios.post(`${import.meta.env.VITE_API_URL}/akun`, {
+      axios.post(`${import.meta.env.VITE_API_URL_PLACEHOLDER}/akun`, {
         email: keycloak.tokenParsed?.email,
         nama: keycloak.tokenParsed?.name,
       });
